@@ -12,6 +12,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'git://git.wincent.com/command-t.git'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+"" close doc help window :pc or <C-w>z
 Plugin 'ycm-core/YouCompleteMe'
 Plugin 'preservim/nerdtree'
 Plugin 'ryanoasis/vim-devicons'
@@ -44,6 +45,23 @@ Plugin 'rstacruz/vim-closer'
 Plugin 'voldikss/vim-floaterm'
 Plugin 'rust-lang/rust.vim'
 Plugin 'Bogdanp/browser-connect.vim'
+"" toggle \c<space> \cc \cu
+Plugin 'preservim/nerdcommenter'
+Plugin 'arcticicestudio/nord-vim'
+" 1st install code-minimap (https://github.com/wfxr/code-minimap)
+" Plugin 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
+Plugin 'wfxr/minimap.vim'
+" Plugin 'OmniSharp/omnisharp-vim'
+Plugin 'HerringtonDarkholme/yats.vim'
+" or Plug 'leafgarland/typescript-vim'
+Plugin 'maxmellon/vim-jsx-pretty'
+Plugin 'yuezk/vim-js'
+Plugin 'Yggdroot/indentLine'
+" post install (yarn install | npm install) then load plugin only for editing supported files
+Plugin 'prettier/vim-prettier', {
+  \ 'do': 'yarn install --frozen-lockfile --production',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
+Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " Run :PlugInstall to install the plugin.
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -68,7 +86,7 @@ set linespace=0
 " colorscheme dracula
 " colorscheme codedark
 " colorscheme atomdark
-" colorscheme onehalfdark
+"colorscheme onehalfdark
 " colorscheme onehalflight
 " colorscheme purify
 " colorscheme gruvbox
@@ -76,9 +94,17 @@ set linespace=0
 " colorscheme deus 
 " colors deus
 " Theme
- syntax enable
- set t_Co=256
-colorscheme OceanicNext
+syntax enable
+" for vim 7
+set t_Co=256
+
+" for vim 8
+if (has("termguicolors"))
+ set termguicolors
+endif
+" colorscheme OceanicNext
+colorscheme nord
+
 filetype plugin indent on
 
 " vim airline-config
@@ -114,9 +140,14 @@ let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = 'ln'
 
 let g:airline#extensions#tabline#formatter = 'default'
-let g:airline_theme = 'ouo'
+" let g:airline_theme = 'ouo'
 " let g:airline_theme = 'dracula'
-"let g:airline_theme = 'powerlineish'
+" let g:airline_theme = 'powerlineish'
+" let g:airline_theme = 'bubblegum'
+" let g:airline_theme = 'oceanicnext'
+" let g:airline_theme = 'luna'
+" let g:airline_theme = 'deus'
+let g:airline_theme = 'nord'
 let g:airline_font_size=7
 let g:airline_experimental = 1
 
@@ -130,8 +161,8 @@ set background=dark    " Setting dark mode
 " colorscheme deus
 " let g:deus_termcolors=256
 let NERDTreeShowHidden=1
-nnoremap ,d :echo system("date")<CR>
 set guifont=MesloLGS\ NF:h12
-"" emmet config
-
-
+let g:minimap_width = 10
+let g:minimap_auto_start = 1
+let g:minimap_auto_start_win_enter = 1
+set showmatch

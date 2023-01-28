@@ -52,6 +52,16 @@ Plugin 'arcticicestudio/nord-vim'
 " Plugin 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
 Plugin 'wfxr/minimap.vim'
 " Plugin 'OmniSharp/omnisharp-vim'
+Plugin 'HerringtonDarkholme/yats.vim'
+" or Plug 'leafgarland/typescript-vim'
+Plugin 'maxmellon/vim-jsx-pretty'
+Plugin 'yuezk/vim-js'
+Plugin 'Yggdroot/indentLine'
+" post install (yarn install | npm install) then load plugin only for editing supported files
+Plugin 'prettier/vim-prettier', {
+  \ 'do': 'yarn install --frozen-lockfile --production',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
+Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " Run :PlugInstall to install the plugin.
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -155,4 +165,4 @@ set guifont=MesloLGS\ NF:h12
 let g:minimap_width = 10
 let g:minimap_auto_start = 1
 let g:minimap_auto_start_win_enter = 1
-
+set showmatch
